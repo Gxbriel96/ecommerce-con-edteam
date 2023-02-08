@@ -1,10 +1,10 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { API_URL } from "../env"
+/* import axios from "axios"
+import { useEffect, useState } from "react" */
+import { API_URL } from "../../../env"
 
-const App = () => {
+const Home = () => {
   
-  const [data, setData] = useState({})
+  /* const [data, setData] = useState({})
   //User admin del curso
   const user = { "email": "beto@ed.team",
   "password": "123abc"
@@ -15,7 +15,7 @@ const App = () => {
     .then(d => setData(d.data))
     .catch( e => console.error(e))
   },[])
-  console.log(data)
+  console.log(data) */
   return (
     <div>
       <h1>Hola chanchito{API_URL}</h1>
@@ -24,4 +24,4 @@ const App = () => {
   )
 }
 
-export default App
+export default Home
