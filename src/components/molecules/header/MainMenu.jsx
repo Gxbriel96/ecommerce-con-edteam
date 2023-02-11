@@ -2,15 +2,15 @@ import { NavLink } from "react-router-dom"
 
 const MainMenu = () =>{
     return(
-        <nav>
-            <ul>
-                <li>
-                    <NavLink to="/">
+        <nav className="w-full">
+            <ul className="flex justify-end text-gray-100">
+                <li className="flex items-center">
+                    <NavLink className="menu-item" to="/" >
                         Inicio
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink to="/productos" >
+                <li className="flex items-center">
+                    <NavLink className="menu-item" to="/productos" >
                         Productos
                     </NavLink>
                 </li>
