@@ -1,6 +1,6 @@
-import useFetch from "../../hooks/useFetch"
+import useFetch from "../../../../hooks/useFetch"
 
-const Products = () => {
+const Table = () => {
   const { data, error, loading } = useFetch("public/products")
   if (loading) return <h1> Cargando...</h1>
   if (error) return <h1>error en la petición de productos</h1>
@@ -16,4 +16,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default Table
