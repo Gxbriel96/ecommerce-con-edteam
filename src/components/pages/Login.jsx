@@ -6,30 +6,31 @@ import { setToken } from "../../helpers/auth"
 import LoginTemplate from "../templates/LoginTemplate"
 
 const Login = () => {
-    const nav = useNavigate()
+  const nav = useNavigate()
 
-    const [error, setError] = useState()
-    
-    const handleSubmit = (e) =>{
-        e.preventDefault()
-        setError()
-        const data = {
-            email: e.target.email.value,
-            password: e.target.password.value
-        }
-        
-        axios.post(`${API_URL}/public/login`, data)
-        .then( resp => {
-            setToken(resp.data.data.token)
-            nav("/")
-        })
-        .catch(err => {
-            setError(err)
-        })
+  const [error, setError] = useState()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setError()
+    const data = {
+      email: e.target.email.value,
+      password: e.target.password.value,
     }
 
-    return(
-        <LoginTemplate title="Iniciar sesión">
+    axios
+      .post(`${API_URL}/public/login`, data)
+      .then((resp) => {
+        setToken(resp.data.data.token)
+        nav("/")
+      })
+      .catch((err) => {
+        setError(err)
+      })
+  }
+
+  return (
+    <LoginTemplate title="Iniciar sesión">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <input
@@ -62,7 +63,7 @@ const Login = () => {
         )}
       </form>
     </LoginTemplate>
-    )
+  )
 }
 
 export default Login
