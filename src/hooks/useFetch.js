@@ -20,7 +20,6 @@ const useFetch = (endpoint, headers = {}) => {
         setLoading(false)
       })
   }, [])
-
   return { data, error, loading }
 }
 
