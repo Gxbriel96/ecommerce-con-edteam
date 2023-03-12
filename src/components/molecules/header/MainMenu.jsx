@@ -1,8 +1,11 @@
+import { useContext } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
+import { UserContext } from "../../../context/UserContext"
 import { deleteToken, getToken } from "../../../helpers/auth"
 
 const MainMenu = () => {
   const nav = useNavigate()
+  const { userData } = useContext(UserContext)
   const handleSession = () => {
     deleteToken()
     nav("/")
@@ -28,11 +31,13 @@ const MainMenu = () => {
           </li>
         ) : (
           <>
-            <li className="flex items-center">
-              <NavLink className="menu-item" to="/admin/productos">
-                Administrar Productos
-              </NavLink>
-            </li>
+            {userData?.is_admin && (
+              <li className="flex items-center">
+                <NavLink className="menu-item" to="/admin/productos">
+                  Administrar Productos
+                </NavLink>
+              </li>
+            )}
             <li className="flex items-center">
               <NavLink onClick={handleSession} className="menu-item">
                 Cerrar Sesión
