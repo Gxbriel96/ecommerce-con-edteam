@@ -5,9 +5,10 @@ import { deleteToken, getToken } from "../../../helpers/auth"
 
 const MainMenu = () => {
   const nav = useNavigate()
-  const { userData } = useContext(UserContext)
+  const { userData, setUserData } = useContext(UserContext)
   const handleSession = () => {
     deleteToken()
+    setUserData()
     nav("/")
   }
   return (
