@@ -9,6 +9,7 @@ import Products from "../components/pages/Products"
 import Register from "../components/pages/Register"
 import Admin from "../components/templates/Admin"
 import App from "../components/templates/App"
+import Cart from "../components/pages/Cart"
 
 const RouterG = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const RouterG = createBrowserRouter([
         path: "/productos/:id",
         element: <Product />,
       },
+      {
+        path: "/carrito",
+        element: <Cart />
+      }
     ],
   },
   {

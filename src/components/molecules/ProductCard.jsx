@@ -1,9 +1,24 @@
 import { Link } from "react-router-dom"
 import { formatPrice } from "../../helpers/number"
+import { useContext } from "react"
+import { CartContext } from "../../context/CartContext"
 
 const ProductCard = ({ product }) => {
   const { images, product_name, id, price, description } = product
+  const { state, dispatch } = useContext(CartContext)
 
+  const addToCart = () => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: product,
+    })
+  }
+  const removeFromCart = () => {
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: product,
+    })
+  }
   return (
     <article className="w-full max-w-sm bg-white rounded-lg shadow-lg p-5">
       <div className="mb-5 rounded-lg overflow-hidden">
@@ -27,6 +42,18 @@ const ProductCard = ({ product }) => {
         <span className="text-xl font-bold text-gray-900">
           {formatPrice(price)}
         </span>
+      </div>
+      <div className="flex justify-between items-center">
+        {!state.cart.find((c) => c.id === product.id) && (
+          <button className="bg-gradient" onClick={addToCart}>
+            AGREGAR AL CARRITO
+          </button>
+        )}
+        {state.cart.find((c) => c.id === product.id) && (
+          <button className="bg-gradient" onClick={removeFromCart}>
+            QUITAR DEL CARRITO
+          </button>
+        )}
       </div>
     </article>
   )

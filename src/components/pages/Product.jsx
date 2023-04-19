@@ -5,7 +5,7 @@ import { API_URL } from "../../../env"
 import { CartContext } from "../../context/CartContext"
 
 const Product = () => {
-  const { dispatch } = useContext(CartContext)
+  const { state, dispatch } = useContext(CartContext)
   const params = useParams()
   const [product, setProduct] = useState()
 
@@ -22,13 +22,13 @@ const Product = () => {
   const addToCart = () => {
     dispatch({
       type: "ADD_TO_CART",
-      payload: product
+      payload: product,
     })
   }
   const removeFromCart = () => {
     dispatch({
       type: "REMOVE_FROM_CART",
-      payload: product
+      payload: product,
     })
   }
 
@@ -38,12 +38,16 @@ const Product = () => {
     <div>
       <h1 className="text-3xl">Producto: {product.product_name}</h1>
       <p>{JSON.stringify(product)}</p>
-      <button className="bg-gradient" onClick={addToCart}>
-        AGREGAR AL CARRITO
-      </button>
-      <button className="bg-gradient" onClick={removeFromCart}>
-        QUITAR DEL CARRITO
-      </button>
+      {!state.cart.find((c) => c.id === product.id) && (
+        <button className="bg-gradient" onClick={addToCart}>
+          AGREGAR AL CARRITO
+        </button>
+      )}
+      {state.cart.find((c) => c.id === product.id) && (
+        <button className="bg-gradient" onClick={removeFromCart}>
+          QUITAR DEL CARRITO
+        </button>
+      )}
     </div>
   )
 }
